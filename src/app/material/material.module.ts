@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatTableModule, MatPaginatorModule,MatToolbarModule, MatIconModule, 
     MatCardModule,MatFormFieldModule,MatInputModule, MatSnackBarModule,MatMenuModule, MatDividerModule,
-    MatSidenavModule} from '@angular/material';
+    MatSidenavModule,
+    MatDialogModule} from '@angular/material';
 
 import {ReactiveFormsModule} from '@angular/forms'
 
@@ -27,7 +28,8 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatSnackBarModule,
         MatMenuModule,
         MatDividerModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatDialogModule
     ],
     exports: [
         MatButtonModule,
@@ -42,7 +44,8 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatSnackBarModule,
         MatMenuModule,
         MatDividerModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatDialogModule
     ],
     providers: [],
 })

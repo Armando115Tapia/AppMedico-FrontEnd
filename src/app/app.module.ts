@@ -15,6 +15,9 @@ import { ReporteComponent } from './pages/reporte/reporte.component';
 import { Not403Component } from './pages/not403/not403.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paciente-edicion.component';
+import { EspecialidadEdicionComponent } from './pages/especialidad/especialidad-edicion/especialidad-edicion.component';
+import { ExamenEdicionComponent } from './pages/examen/examen-edicion/examen-edicion.component';
+import { DialogoComponent } from './pages/medico/dialogo/dialogo.component';
 
 
 
@@ -29,7 +32,10 @@ import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paci
     PacienteComponent,
     ReporteComponent,
     Not403Component,
-    PacienteEdicionComponent
+    PacienteEdicionComponent,
+    EspecialidadEdicionComponent,
+    ExamenEdicionComponent,
+    DialogoComponent
   ],
   imports: [
     BrowserModule,
