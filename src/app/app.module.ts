@@ -18,6 +18,7 @@ import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paci
 import { EspecialidadEdicionComponent } from './pages/especialidad/especialidad-edicion/especialidad-edicion.component';
 import { ExamenEdicionComponent } from './pages/examen/examen-edicion/examen-edicion.component';
 import { DialogoComponent } from './pages/medico/dialogo/dialogo.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -37,11 +38,15 @@ import { DialogoComponent } from './pages/medico/dialogo/dialogo.component';
     ExamenEdicionComponent,
     DialogoComponent
   ],
+  //Se agrega componentes que van a estar embebidos dentro de otros componente, como es
+  // el caso del dialog, para habilitar que el componente se muestre dentro de si mismo
+  entryComponents:[DialogoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MeterialModule,
-    HttpClientModule
+    HttpClientModule, 
+    FormsModule
     
   ],
   providers: [],

@@ -29,7 +29,8 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatMenuModule,
         MatDividerModule,
         MatSidenavModule,
-        MatDialogModule
+        MatDialogModule,
+        
     ],
     exports: [
         MatButtonModule,
@@ -45,7 +46,8 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatMenuModule,
         MatDividerModule,
         MatSidenavModule,
-        MatDialogModule
+        MatDialogModule,
+        
     ],
     providers: [],
 })
