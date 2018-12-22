@@ -53,6 +53,7 @@ export class MedicoComponent implements OnInit {
     });
   }
 
+  //Con esta función se busca en el angular en todos los campos
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();

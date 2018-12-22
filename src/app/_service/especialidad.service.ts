@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class EspecialidadService {
 
-  especialidadsCambio = new Subject<Especialidad[]>();
+  especialidadesCambio = new Subject<Especialidad[]>();
   mensajeCambio = new Subject<string>();
 
   url: string = `${HOST}/especialidades`;

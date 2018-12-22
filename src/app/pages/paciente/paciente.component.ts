@@ -10,6 +10,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular
 })
 export class PacienteComponent implements OnInit {
   
+  cantidad:number;
   dataSource:MatTableDataSource<Paciente>;
   displayedColumns = ['idPaciente','nombres','apellidos','acciones'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -32,13 +33,20 @@ export class PacienteComponent implements OnInit {
       });
     });
 
+/*
     this.pacienteService.listar().subscribe(data=>{
       this.dataSource=new MatTableDataSource(data); 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-   
-    });
+    });*/
 
+    this.pacienteService.listarPageable(0,10 ).subscribe(data=>{
+      let pacientes =JSON.parse(JSON.stringify(data)).content;
+      this.cantidad = JSON.parse(JSON.stringify(data)).totalElements;
+      this.dataSource=new MatTableDataSource(pacientes); 
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   eliminar(idPaciente : number){
@@ -48,6 +56,28 @@ export class PacienteComponent implements OnInit {
         this.pacienteService.mensajeCambio.next('Se eliminó');
       });
     });
+  }
+
+  mostrarMas(e:any){
+    //console.log(e);
+    this.pacienteService.listarPageable(e.pageIndex, e.pageSize).subscribe(
+      data=>{
+        //Se transforma en un string luego se parse en un JSON luego se toma el valor que 
+        //se necesite
+      let pacientes =JSON.parse(JSON.stringify(data)).content;
+      this.cantidad = JSON.parse(JSON.stringify(data)).totalElements;
+      this.dataSource=new MatTableDataSource(pacientes); 
+      //this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      }
+
+    );
+  }
+  
+  applyFilter(filterValue: string){
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter=filterValue;
   }
   
 }

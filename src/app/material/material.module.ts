@@ -1,10 +1,13 @@
+import { MatPaginatorImpl } from './mat-paginator';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatTableModule, MatPaginatorModule,MatToolbarModule, MatIconModule, 
     MatCardModule,MatFormFieldModule,MatInputModule, MatSnackBarModule,MatMenuModule, MatDividerModule,
     MatSidenavModule,
-    MatDialogModule} from '@angular/material';
+    MatDialogModule,
+    MatSortModule,
+    MatPaginatorIntl} from '@angular/material';
 
 import {ReactiveFormsModule} from '@angular/forms'
 
@@ -30,6 +33,7 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatDividerModule,
         MatSidenavModule,
         MatDialogModule,
+        MatSortModule
         
     ],
     exports: [
@@ -47,8 +51,11 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatDividerModule,
         MatSidenavModule,
         MatDialogModule,
+        MatSortModule
         
     ],
-    providers: [],
+    providers: [
+        { provide: MatPaginatorIntl, useClass: MatPaginatorImpl }        
+    ],
 })
 export class MeterialModule {}

@@ -22,7 +22,7 @@ const routes: Routes = [
   ]},
   {path:'especialidad', component:EspecialidadComponent, children:[
     {path:'nuevo',component:EspecialidadEdicionComponent},
-    {path:'edicion/id',component:EspecialidadEdicionComponent}
+    {path:'edicion/:id',component:EspecialidadEdicionComponent}
   ]},
   {path:'medico',component:MedicoComponent},
   {path:'consulta',component:ConsultaComponent},
