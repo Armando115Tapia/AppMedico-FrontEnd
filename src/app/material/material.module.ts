@@ -7,7 +7,13 @@ import {MatButtonModule, MatTableModule, MatPaginatorModule,MatToolbarModule, Ma
     MatSidenavModule,
     MatDialogModule,
     MatSortModule,
-    MatPaginatorIntl} from '@angular/material';
+    MatPaginatorIntl,
+    MatSelectModule,
+    MatDatepickerModule,
+    MAT_DATE_LOCALE,
+    MatNativeDateModule,
+    MatExpansionModule,
+    MatListModule} from '@angular/material';
 
 import {ReactiveFormsModule} from '@angular/forms'
 
@@ -33,7 +39,11 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatDividerModule,
         MatSidenavModule,
         MatDialogModule,
-        MatSortModule
+        MatSortModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatExpansionModule,
+        MatListModule
         
     ],
     exports: [
@@ -51,11 +61,19 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatDividerModule,
         MatSidenavModule,
         MatDialogModule,
-        MatSortModule
+        MatSortModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule, 
+        MatExpansionModule,
+        MatListModule
+    
         
     ],
     providers: [
-        { provide: MatPaginatorIntl, useClass: MatPaginatorImpl }        
+        { provide: MatPaginatorIntl, useClass: MatPaginatorImpl },
+        //Para que el diccionario sea en español    
+        {provide:MAT_DATE_LOCALE, useValue:'es-ES'}        
     ],
 })
 export class MeterialModule {}
