@@ -1,3 +1,5 @@
+import { Consulta } from './../../_model/consulta';
+import { Especialidad } from './../../_model/especialidad';
 import { DetalleConsulta } from './../../_model/detalleConsulta';
 import { ExamenService } from './../../_service/examen.service';
 import { Paciente } from './../../_model/paciente';
@@ -5,7 +7,6 @@ import { ConsultaService } from './../../_service/consulta.service';
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from 'src/app/_service/paciente.service';
 import { Medico } from 'src/app/_model/medico';
-import { Especialidad } from 'src/app/_model/especialidad';
 import { MedicoService } from 'src/app/_service/medico.service';
 import { EspecialidadService } from 'src/app/_service/especialidad.service';
 import { Examen } from 'src/app/_model/examen';
@@ -105,7 +106,7 @@ export class ConsultaComponent implements OnInit {
   }
   
   agregarExamen(){
-    if(this.idExamenSeleccionado >0){
+    if(this.idExamenSeleccionado > 0){
       let cont =0;
       for(let i =0;i<this.examenesSeleccionados.length ; i++){
         let examen = this.examenesSeleccionados[i];
@@ -132,6 +133,46 @@ export class ConsultaComponent implements OnInit {
       this.snackBar.open(this.mensaje, "Aviso",{duration:2000});
     }
   }
+
+  removerExamen(index:number){
+    this.examenesSeleccionados.splice(index,1);
+  }
+
+  estadoBotonRegistrar(){
+    return (this.detalleConsulta.length === 0 || this.idEspecialidadSeleccionado === 0 || this.idMedicoSeleccionado === 0 
+      || this.idPacienteSeleccionado===0);
+  }
+
+  //In this method, JSON is build and send to backend 
+  aceptar(){
+
+    let medico = new Medico();
+    medico.idMedico = this.idMedicoSeleccionado;
+
+    let especialidad = new Especialidad();
+    especialidad.idEspecialidad = this.idEspecialidadSeleccionado;
+
+    let paciente = new Paciente();
+    paciente.idPaciente = this.idPacienteSeleccionado;
+
+    let consulta = new Consulta();
+    consulta.especialidad = especialidad;
+    consulta.paciente= paciente;
+    consulta.medico = medico;
+
+    //Obtain ISO DATE instead of work with date of JS, other option could be to use moment.js (review it)
+    let tzoffset = (this.fechaSeleccionada).getTimezoneOffset() * 6000;
+    let localISOTime = (new Date(Date.now() - tzoffset)).toISOString();
+    consulta.fecha=localISOTime;
+
+    consulta.detalleConsulta=this.detalleConsulta;
+
+    console.log(consulta);
+
+  }
+
+
+
 
 
 

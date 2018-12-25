@@ -1,6 +1,6 @@
 
 export class Paciente{
-    idPaciente:String;
+    idPaciente:number;
     nombres:String;
     apellidos: String;
     dni:String;
