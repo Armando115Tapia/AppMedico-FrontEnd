@@ -9,6 +9,7 @@ import { Especialidad } from 'src/app/_model/especialidad';
 import { MedicoService } from 'src/app/_service/medico.service';
 import { EspecialidadService } from 'src/app/_service/especialidad.service';
 import { Examen } from 'src/app/_model/examen';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-consulta',
@@ -21,23 +22,26 @@ export class ConsultaComponent implements OnInit {
   medicos: Medico[]=[];
   especialidades : Especialidad[] = [];
   examenes:Examen[] = [];
-
   maxFecha:Date=new Date();
-  fechaSeleccionada : Date = new Date();
+  examenesSeleccionados:Examen[]=[];
 
+  fechaSeleccionada : Date = new Date();
   diagnostico:string;
   tratamiento:string;
+  mensaje:string;
 
   idPacienteSeleccionado : number;  
-  idMedico : number;   
-  idEspecialidad: number;
-  idExamen:number;
+  idEspecialidadSeleccionado: number;
+  idMedicoSeleccionado : number;   
+  idExamenSeleccionado : number;
+   
+  //idExamen:number;
   detalleConsulta:DetalleConsulta[] =[];
 
 
   constructor(private consultaService:ConsultaService, private pacienteService:PacienteService,
               private medicoService: MedicoService, private especialiadaService:EspecialidadService,
-              private examenService:ExamenService) { }
+              private examenService:ExamenService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.listarPacientes();
@@ -64,6 +68,7 @@ export class ConsultaComponent implements OnInit {
       this.especialidades = data;
     });
   }
+
   listarExamenes(){
     this.examenService.listar().subscribe(data=>{
       this.examenes = data;
@@ -73,14 +78,59 @@ export class ConsultaComponent implements OnInit {
   }
 
   agregar(){
+    if(this.diagnostico != null && this.tratamiento != null){
+      //Add only if diagnostico and tratamiento are not null
+      let det = new DetalleConsulta();
+      det.diagonostico = this.diagnostico;
+      det.tratamiento = this.tratamiento;
+      this.detalleConsulta.push(det);
+
+      //clear data
+      this.diagnostico=null;
+      this.tratamiento=null;
+    }else{
+      this.mensaje = "Debe agregar un diagnostico y tratamiento";
+      this.snackBar.open(this.mensaje,"Aviso",{duration:2000});
+
+    }  
+    /*
     let det = new  DetalleConsulta();
     det.diagonostico =  this.diagnostico;
     det.tratamiento = this.tratamiento;
-    this.detalleConsulta.push(det);
+    this.detalleConsulta.push(det);*/
   }
 
   removerDiagnostico(index:number){
     this.detalleConsulta.splice(index,1);
+  }
+  
+  agregarExamen(){
+    if(this.idExamenSeleccionado >0){
+      let cont =0;
+      for(let i =0;i<this.examenesSeleccionados.length ; i++){
+        let examen = this.examenesSeleccionados[i];
+        if(examen.idExamen === this.idExamenSeleccionado){
+          cont++;
+          break;
+        }
+      }
+      if(cont > 0){
+        this.mensaje = "El examen se encuentra en la lista";
+        this.snackBar.open(this.mensaje, "Aviso", {duration:2000});
+
+      }else{
+        let examen = new Examen();
+        examen.idExamen = this.idExamenSeleccionado;
+        this.examenService.listarExamenPorId(this.idExamenSeleccionado).subscribe(data=>{
+          examen.nombre = data.nombre;
+          this.examenesSeleccionados.push(examen);
+        });
+      }
+
+    }else{
+      this.mensaje ="Debe agregar un examen";
+      this.snackBar.open(this.mensaje, "Aviso",{duration:2000});
+    }
   }
 
 

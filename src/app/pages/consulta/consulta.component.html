@@ -70,5 +70,24 @@
           
           </mat-list>
           
+          <mat-form-field>
+            <!--La opcion de la seleccion de este combobox se almacenara en la variable idPacienteSeleccionado-->
+            <mat-select placeholder="Examen" [(value)] = "idExamenSeleccionado">
+              <!--La opcion es el id, pero se van a mostrar los nombres-->
+              <mat-option *ngFor="let ex of examenes " [value] = "ex.idExamen" > 
+                {{ex.nombre}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+      <button mat-raised-button color="primary" (click)="agregarExamen()">Agregar Examen</button>
+      <mat-toolbar *ngFor="let d of examenesSeleccionados; let i = index">
+        {{d.nombre}}
+        <span class="example-spacer"></span>
+        <button mat-raised-button color="warm" (click)="removerExamen(i)">Remover</button>
+
+      </mat-toolbar>
+
+      <button mat-raised-button color="primary" (click)="aceptar()" >
+        Registrar</button>
+
 
 </div>
