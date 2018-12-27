@@ -1,3 +1,4 @@
+import { ConsultaListaExamen } from './../../_model/consultaListaExamen';
 import { Consulta } from './../../_model/consulta';
 import { Especialidad } from './../../_model/especialidad';
 import { DetalleConsulta } from './../../_model/detalleConsulta';
@@ -82,7 +83,7 @@ export class ConsultaComponent implements OnInit {
     if(this.diagnostico != null && this.tratamiento != null){
       //Add only if diagnostico and tratamiento are not null
       let det = new DetalleConsulta();
-      det.diagonostico = this.diagnostico;
+      det.diagnostico = this.diagnostico;
       det.tratamiento = this.tratamiento;
       this.detalleConsulta.push(det);
 
@@ -167,11 +168,38 @@ export class ConsultaComponent implements OnInit {
 
     consulta.detalleConsulta=this.detalleConsulta;
 
-    console.log(consulta);
+    let consultaListaExamen = new ConsultaListaExamen();
+    consultaListaExamen.consulta = consulta;
+    consultaListaExamen.listExamen=this.examenesSeleccionados;  
+
+    this.consultaService.registrar(consultaListaExamen).subscribe( ()=>{
+      this.snackBar.open("Se registro", "Aviso", {duration:2000});
+      setTimeout(() => {
+        this.limipiarControles();
+      }, 2000);
+    });
+
+    console.log(consultaListaExamen);
 
   }
 
+  limipiarControles(){
+    this.detalleConsulta=[];
+    this.examenesSeleccionados = [];
+    this.especialidades=[];
+    this.diagnostico='';
+    this.tratamiento='';
+    this.idPacienteSeleccionado=0;
+    this.idMedicoSeleccionado = 0;
+    this.idExamenSeleccionado=0;
+    this.fechaSeleccionada = new Date();
+    this.fechaSeleccionada.setHours(0);
+    this.fechaSeleccionada.setMinutes(0);
+    this.fechaSeleccionada.setSeconds(0);
+    this.fechaSeleccionada.setMilliseconds(0);
+    this.mensaje='';
 
+  }
 
 
 

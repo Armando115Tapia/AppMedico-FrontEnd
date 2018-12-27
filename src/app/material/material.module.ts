@@ -13,7 +13,8 @@ import {MatButtonModule, MatTableModule, MatPaginatorModule,MatToolbarModule, Ma
     MAT_DATE_LOCALE,
     MatNativeDateModule,
     MatExpansionModule,
-    MatListModule} from '@angular/material';
+    MatListModule,
+    MatAutocompleteModule} from '@angular/material';
 
 import {ReactiveFormsModule} from '@angular/forms'
 
@@ -43,7 +44,8 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatSelectModule,
         MatDatepickerModule,
         MatExpansionModule,
-        MatListModule
+        MatListModule,
+        MatAutocompleteModule
         
     ],
     exports: [
@@ -66,7 +68,8 @@ import {ReactiveFormsModule} from '@angular/forms'
         MatDatepickerModule,
         MatNativeDateModule, 
         MatExpansionModule,
-        MatListModule
+        MatListModule,
+        MatAutocompleteModule
     
         
     ],

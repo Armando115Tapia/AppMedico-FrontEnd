@@ -1,5 +1,5 @@
 export class DetalleConsulta{
     idConsulta:number;
-    diagonostico:string;
+    diagnostico:string;
     tratamiento:string;
 }

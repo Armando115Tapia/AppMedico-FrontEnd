@@ -10,6 +10,7 @@ import { EspecialidadComponent } from './pages/especialidad/especialidad.compone
 import { EspecialidadEdicionComponent } from './pages/especialidad/especialidad-edicion/especialidad-edicion.component';
 import { MedicoComponent } from './pages/medico/medico.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
+import { EspecialComponent } from './pages/consulta/especial/especial.component';
 
 const routes: Routes = [
   {path:'paciente', component:PacienteComponent, children :[
@@ -26,7 +27,7 @@ const routes: Routes = [
   ]},
   {path:'medico',component:MedicoComponent},
   {path:'consulta',component:ConsultaComponent},
-  {path:'consulta-epecial',component:EspecialidadComponent},
+  {path:'consulta-especial',component:EspecialComponent},
   {path:'buscar',component:BuscarComponent},
   {path:'reporte',component:ReporteComponent},
 
