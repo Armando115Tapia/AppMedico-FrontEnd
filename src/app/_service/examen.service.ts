@@ -3,6 +3,7 @@ import { HOST } from './../_shared/var.constant';
 import { Examen } from './../_model/examen';
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { ConsultaListaExamen } from '../_model/consultaListaExamen';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,9 @@ export class ExamenService {
 
   eliminar(id: number) {
     return this.http.delete(`${this.url}/${id}`);
+  }
+
+  listarExamenPorConsulta(idConsulta:number){
+    return this.http.get<ConsultaListaExamen[]>(`${HOST}/consultaexamenes/${idConsulta}`);
   }
 }

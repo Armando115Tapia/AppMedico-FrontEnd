@@ -20,6 +20,7 @@ import { ExamenEdicionComponent } from './pages/examen/examen-edicion/examen-edi
 import { DialogoComponent } from './pages/medico/dialogo/dialogo.component';
 import { FormsModule } from '@angular/forms';
 import { EspecialComponent } from './pages/consulta/especial/especial.component';
+import { DialogoDetalleComponent } from './pages/buscar/dialogo-detalle/dialogo-detalle.component';
 
 
 
@@ -38,11 +39,12 @@ import { EspecialComponent } from './pages/consulta/especial/especial.component'
     EspecialidadEdicionComponent,
     ExamenEdicionComponent,
     DialogoComponent,
-    EspecialComponent
+    EspecialComponent,
+    DialogoDetalleComponent
   ],
   //Se agrega componentes que van a estar embebidos dentro de otros componente, como es
   // el caso del dialog, para habilitar que el componente se muestre dentro de si mismo
-  entryComponents:[DialogoComponent],
+  entryComponents:[DialogoComponent,DialogoDetalleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

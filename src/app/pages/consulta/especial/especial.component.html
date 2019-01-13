@@ -41,6 +41,8 @@
     </mat-form-field>
 
     <mat-form-field>
+      <!--El tow way binding es para registrar en memoria y mostrar al ususario, ya que en el formulario toca hacer un submit a todo, 
+      aqui se quiere solo refrescar una parte dinamica-->
       <input matInput placeholder="Diagnostico" [(ngModel)]="diagnostico" formControlName="diagnostico">
     </mat-form-field>
     <mat-form-field>

@@ -80,10 +80,15 @@ export class EspecialComponent implements OnInit {
     this.filteredOptionsMedico = this.myControlMedico.valueChanges.pipe(map(val => this.filterMedico(val)));
   }
 
+  //El if-else validad cuando existe (es un objeto) y cuando no existe en la data como un string, al no controlar esto se producen 
+  //errores
   filter(val: any) {
     if (val != null && val.idPaciente > 0) {
+      //El valor que ingresa sea busca y filtrado por nombre, apellido o dni en el caso que ingrese el DNI
       return this.pacientes.filter(option =>
-        option.nombres.toLowerCase().includes(val.nombres.toLowerCase()) || option.apellidos.toLowerCase().includes(val.apellidos.toLowerCase()) || option.dni.includes(val.dni));
+        option.nombres.toLowerCase().includes(val.nombres.toLowerCase()) || 
+        option.apellidos.toLowerCase().includes(val.apellidos.toLowerCase()) || 
+        option.dni.includes(val.dni));
     } else {
       return this.pacientes.filter(option =>
         option.nombres.toLowerCase().includes(val.toLowerCase()) || option.apellidos.toLowerCase().includes(val.toLowerCase()) || option.dni.includes(val));
